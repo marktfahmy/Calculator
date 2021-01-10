@@ -3,6 +3,7 @@ import math
 
 def takeInput(input):
     global out_str
+    ## if input is =, then it will evaluate the inputted expression otherwise it just adds it to the input string and updates the output
     if input != "=":
         out_str += str(input)
         out_box.configure(text=out_str)
@@ -13,11 +14,13 @@ def takeInput(input):
         
 def clear():
     global out_str
+    ## erase everything
     out_str = ""
     out_box.configure(text="")
 
 root = tk.Tk()
 
+## declare the output box, button frame and output string, as well as the lists which store what each button should trigger
 out_box = tk.Label(font=('Verdana',36),bg='white')
 out_str = ""
 out_box.grid(row=0,column=0)
@@ -27,6 +30,8 @@ buttons = [0 for i in range(9)]
 nums = "123456789"
 operators = [0 for i in range(4)]
 ops = ["+","-","*","/"]
+
+## set up the buttons
 for i in range(9):
     buttons[i] = tk.Button(button_frame,font=('Verdana', 36),text=nums[i],command=lambda x=i:takeInput(nums[x]))
     buttons[i].grid(row=math.floor(i/3),column=i%3,sticky="EW")
